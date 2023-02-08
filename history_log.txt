@@ -1,7 +1,7 @@
-commit 76193f43055e69ffede06ca6e12ee7ee8c2c71d4
+commit 0114012ecc4f4e1ae656175aa3b8e73bf3728e46
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Wed Feb 8 04:57:51 2023 +0000
+Date:   Wed Feb 8 15:55:46 2023 +0000
 
-    Updated AccountDAO to getAllAccounts
+    Created an addAccount method in accountDAO
 
- 3 files changed, 1667 insertions(+)
+ 3 files changed, 57 insertions(+), 241 deletions(-)
