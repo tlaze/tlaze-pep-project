@@ -16,6 +16,10 @@ public class AccountService {
     }
 
     public List<Account> getAllAccounts(){
-        return null;
+        return AccountDAO.getAllAccounts();
+    }
+
+    public static Account addAccount(Account account){
+        return AccountDAO.addAccount(account);
     }
 }

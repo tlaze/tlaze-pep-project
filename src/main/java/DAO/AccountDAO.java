@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AccountDAO {
 
-    public List<Account> getAllAccounts(){
+    public static List<Account> getAllAccounts(){
         Connection connection = ConnectionUtil.getConnection();
         List<Account> accounts = new ArrayList<>();
         try{
@@ -26,7 +26,7 @@ public class AccountDAO {
         return accounts;
     }
 
-    public Account addAccount(Account account){
+    public static Account addAccount(Account account){
         Connection connection = ConnectionUtil.getConnection();
         try{
             String sql = "INSERT INTO account (account_id, username, password) VALUES (?,?,?);";

@@ -114,4 +114,7 @@ public class Account {
                 ", password='" + password + '\'' +
                 '}';
     }
+    public int indexOf(Account newAccount) {
+        return 0;
+    }
 }
