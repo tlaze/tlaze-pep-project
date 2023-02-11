@@ -1,7 +1,7 @@
-commit aaec51455d11c4e3e1cc3f7ac20a80796a75e4fb
+commit a3838c3b650bce633d231759a6c37c8a704bffe8
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Wed Feb 8 17:04:49 2023 +0000
+Date:   Sat Feb 11 18:40:38 2023 +0000
 
-    Updated socialMediaController to register a new account. Still need to make sure it checks if account already exists
+    Register and Login verification complete
 
- 6 files changed, 71 insertions(+), 36 deletions(-)
+ 5 files changed, 182 insertions(+), 219 deletions(-)
