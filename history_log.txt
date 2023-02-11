@@ -1,7 +1,7 @@
-commit a3838c3b650bce633d231759a6c37c8a704bffe8
+commit a121a51e467ff38024f4e5116ea2f18074c1a697
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Sat Feb 11 18:40:38 2023 +0000
+Date:   Sat Feb 11 20:52:35 2023 +0000
 
-    Register and Login verification complete
+    Creating Messages passes all tests
 
- 5 files changed, 182 insertions(+), 219 deletions(-)
+ 6 files changed, 107 insertions(+), 364 deletions(-)
