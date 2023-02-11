@@ -1,7 +1,7 @@
-commit a121a51e467ff38024f4e5116ea2f18074c1a697
+commit cecf29bcf7b3ab145f5f46dab22238534a16bfe1
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Sat Feb 11 20:52:35 2023 +0000
+Date:   Sat Feb 11 21:12:30 2023 +0000
 
-    Creating Messages passes all tests
+    get all messages passes test
 
- 6 files changed, 107 insertions(+), 364 deletions(-)
+ 6 files changed, 113 insertions(+), 329 deletions(-)

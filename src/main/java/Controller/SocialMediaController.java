@@ -3,6 +3,7 @@ package Controller;
 import Model.Account;
 import Service.AccountService;
 import Model.Message;
+import DAO.MessageDAO;
 import Service.MessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,12 +22,16 @@ public class SocialMediaController {
      * suite must receive a Javalin object from this method.
      * @return a Javalin app object which defines the behavior of the Javalin controller.
      */
-
     AccountService accountService;
+    MessageService messageService;
 
+    
     public SocialMediaController(){
         this.accountService = new AccountService();
+        this.messageService = new MessageService();
     }
+
+    
 
     public Javalin startAPI() {
         Javalin app = Javalin.create();
@@ -34,6 +39,7 @@ public class SocialMediaController {
         app.post("/login", this::loginAccountHandler);
         app.post("/messages", this::createMessageHandler);
         app.get("messages", this::getAllMessagesHandler);
+        app.get("messages/{message_id}", this::getMessageByIDHandler);
         return app;
     }
 
@@ -46,7 +52,7 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
 
         Account account = mapper.readValue(context.body(), Account.class);
-        Account newAccount = AccountService.addAccount(account);
+        Account newAccount = accountService.addAccount(account);
 
         if(account.username != "" && account.password.length() > 4 && newAccount !=null){
             context.json(mapper.writeValueAsString(newAccount));
@@ -60,7 +66,7 @@ public class SocialMediaController {
     private void loginAccountHandler(Context context) throws JsonProcessingException{
         ObjectMapper mapper = new ObjectMapper();
         Account account = mapper.readValue(context.body(), Account.class);
-        Account registeredUser = AccountService.login(account);
+        Account registeredUser = accountService.login(account);
 
         if(registeredUser != null){
             context.json(mapper.writeValueAsString(registeredUser));
@@ -75,7 +81,7 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
 
         Message message = mapper.readValue(context.body(), Message.class);
-        Message newMessage = MessageService.createMessage(message);
+        Message newMessage = messageService.createMessage(message);
 
         System.out.println(newMessage);
 
@@ -89,8 +95,22 @@ public class SocialMediaController {
     }
 
     private void getAllMessagesHandler(Context context) throws JsonProcessingException{
-        List<Message> messages = MessageService.getAllMessages();
+        List<Message> messages = messageService.getAllMessages();
         context.json(messages);
+        context.status(200);
+    }
+
+    public void getMessageByIDHandler(Context context) throws JsonProcessingException{
+        // ObjectMapper mapper = new ObjectMapper();
+
+        // Message message = mapper.readValue(context.body(), Message.class);
+        // Message messageID = MessageService.getMessageByID(message);
+        // System.out.println(messageID);
+        // context.json(messageID);
+        // context.status(200);
+
+        int messageID = Integer.parseInt(context.pathParam("message_id"));
+        context.json(messageService.getMessageByID(messageID));
         context.status(200);
     }
 }
