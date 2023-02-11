@@ -20,6 +20,11 @@ public class AccountService {
     }
 
     public static Account addAccount(Account account){
+        
         return AccountDAO.addAccount(account);
+    }
+
+    public static Account login(Account account){
+        return AccountDAO.login(account);
     }
 }

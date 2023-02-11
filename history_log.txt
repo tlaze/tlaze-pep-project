@@ -1,7 +1,7 @@
-commit 9ad4e9cad11fd23ba09e3e13602fc6ba1b549cd5
+commit aaec51455d11c4e3e1cc3f7ac20a80796a75e4fb
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Wed Feb 8 16:10:00 2023 +0000
+Date:   Wed Feb 8 17:04:49 2023 +0000
 
-    fixed current errors in accountDAO and  accountService
+    Updated socialMediaController to register a new account. Still need to make sure it checks if account already exists
 
- 4 files changed, 48 insertions(+), 39 deletions(-)
+ 6 files changed, 71 insertions(+), 36 deletions(-)
