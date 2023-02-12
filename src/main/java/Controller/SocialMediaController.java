@@ -86,8 +86,6 @@ public class SocialMediaController {
         Message message = mapper.readValue(context.body(), Message.class);
         Message newMessage = messageService.createMessage(message);
 
-        System.out.println(newMessage);
-
         if(message.message_text != "" && message.message_text.length() < 255 && newMessage != null){
             context.json(mapper.writeValueAsString(newMessage));
             context.status(200);
@@ -105,14 +103,25 @@ public class SocialMediaController {
 
     public void getMessageByIDHandler(Context context) throws JsonProcessingException{
         int messageID = Integer.parseInt(context.pathParam("message_id"));
-        context.json(messageService.getMessageByID(messageID));
-        context.status(200);
+        Message getMessage = messageService.getMessageByID(messageID);
+
+        if(getMessage != null){
+            context.json(getMessage);
+            context.status(200);
+        }
     }
 
     public void deleteMessageByIDHandler(Context context) throws JsonProcessingException{
         int messageID = Integer.parseInt(context.pathParam("message_id"));
-        context.json(messageService.deleteMessageByID(messageID));
-        context.status(200);
+        Message deletedMessage = messageService.deleteMessageByID(messageID);
+
+        if(deletedMessage != null){
+            context.json(deletedMessage);
+            context.status(200);
+        }
+        else{
+            context.status(200);
+        }
     }
 
     public void updateMessageHandler(Context context) throws JsonProcessingException{
@@ -120,13 +129,11 @@ public class SocialMediaController {
 
         Message message = mapper.readValue(context.body(), Message.class);
 
-        int messageId = Integer.parseInt(context.pathParam("message_id, posted_by, message_text, time_posted_epoch"));
+        int messageId = Integer.parseInt(context.pathParam("message_id"));
 
         Message updatedMessage = messageService.updateMessage(messageId, message);
 
-        System.out.println(updatedMessage);
-
-        if(updatedMessage == null || message.message_text.length() > 255){
+        if(updatedMessage == null || message.message_text.length() > 255 || message.message_text == ""){
             context.status(400);
         }
         else{

@@ -28,11 +28,18 @@ public class MessageService {
     }
 
     public Message deleteMessageByID(int message){
-        return getMessageByID(message);
+        Message messageId = messageDAO.getMessageByID(message);
+
+        if(messageId != null){
+            return messageId;
+        }
+        else{
+            return null;
+        }
     }
 
     public Message updateMessage(int messageId, Message message){
-        return updateMessage(messageId, message);
+        return messageDAO.updateMessage(messageId, message);
     }
     
     public List<Message> getMessagesByAcount(int accountId, Message message){
