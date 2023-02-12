@@ -42,7 +42,7 @@ public class MessageService {
         return messageDAO.updateMessage(messageId, message);
     }
     
-    public List<Message> getMessagesByAcount(int accountId, Message message){
-        return getMessagesByAccount(accountId, message);
+    public List<Message> getMessagesByAccount(int accountId){
+        return messageDAO.getMessagesByAccount(accountId);
     }
 }
