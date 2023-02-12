@@ -30,4 +30,12 @@ public class MessageService {
     public Message deleteMessageByID(int message){
         return getMessageByID(message);
     }
+
+    public Message updateMessage(int messageId, Message message){
+        return updateMessage(messageId, message);
+    }
+    
+    public List<Message> getMessagesByAcount(int accountId, Message message){
+        return getMessagesByAccount(accountId, message);
+    }
 }

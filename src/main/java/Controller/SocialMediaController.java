@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
@@ -40,7 +41,8 @@ public class SocialMediaController {
         app.get("/messages", this::getAllMessagesHandler);
         app.get("/messages/{message_id}", this::getMessageByIDHandler);
         app.delete("/messages/{message_id}", this::deleteMessageByIDHandler);
-        app.patch("/messages/{message_id}", this::updateMessageHandler;)
+        app.patch("/messages/{message_id}", this::updateMessageHandler);
+        app.get("/accounts/{account_id}/messages",this::getMessagesByAccountHandler);
         return app;
     }
 
@@ -114,6 +116,30 @@ public class SocialMediaController {
     }
 
     public void updateMessageHandler(Context context) throws JsonProcessingException{
-        
+        ObjectMapper mapper = new ObjectMapper();
+
+        Message message = mapper.readValue(context.body(), Message.class);
+
+        int messageId = Integer.parseInt(context.pathParam("message_id, posted_by, message_text, time_posted_epoch"));
+
+        Message updatedMessage = messageService.updateMessage(messageId, message);
+
+        System.out.println(updatedMessage);
+
+        if(updatedMessage == null || message.message_text.length() > 255){
+            context.status(400);
+        }
+        else{
+            context.json(mapper.writeValueAsString(updatedMessage));
+            context.status(200);
+        }
+    }
+
+    public void getMessagesByAccountHandler(Context context) throws JsonProcessingException{
+        List<Message> messages = messageService.getAllMessages();
+        int accountID = Integer.parseInt(context.pathParam("posted_by"));
+
+        context.json(messageService.getMessagesByAccount(accountID, messages));
+        context.status(200);
     }
 }
