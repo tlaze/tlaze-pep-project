@@ -3,7 +3,6 @@ package Controller;
 import Model.Account;
 import Service.AccountService;
 import Model.Message;
-import DAO.MessageDAO;
 import Service.MessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,8 +37,10 @@ public class SocialMediaController {
         app.post("/register", this::registerAccountHandler); 
         app.post("/login", this::loginAccountHandler);
         app.post("/messages", this::createMessageHandler);
-        app.get("messages", this::getAllMessagesHandler);
-        app.get("messages/{message_id}", this::getMessageByIDHandler);
+        app.get("/messages", this::getAllMessagesHandler);
+        app.get("/messages/{message_id}", this::getMessageByIDHandler);
+        app.delete("/messages/{message_id}", this::deleteMessageByIDHandler);
+        app.patch("/messages/{message_id}", this::updateMessageHandler;)
         return app;
     }
 
@@ -101,16 +102,18 @@ public class SocialMediaController {
     }
 
     public void getMessageByIDHandler(Context context) throws JsonProcessingException{
-        // ObjectMapper mapper = new ObjectMapper();
-
-        // Message message = mapper.readValue(context.body(), Message.class);
-        // Message messageID = MessageService.getMessageByID(message);
-        // System.out.println(messageID);
-        // context.json(messageID);
-        // context.status(200);
-
         int messageID = Integer.parseInt(context.pathParam("message_id"));
         context.json(messageService.getMessageByID(messageID));
         context.status(200);
+    }
+
+    public void deleteMessageByIDHandler(Context context) throws JsonProcessingException{
+        int messageID = Integer.parseInt(context.pathParam("message_id"));
+        context.json(messageService.deleteMessageByID(messageID));
+        context.status(200);
+    }
+
+    public void updateMessageHandler(Context context) throws JsonProcessingException{
+        
     }
 }

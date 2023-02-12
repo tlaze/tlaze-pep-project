@@ -1,7 +1,7 @@
-commit cecf29bcf7b3ab145f5f46dab22238534a16bfe1
+commit 88fdb05296f26aee6aa8029d489b61429d5ec006
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Sat Feb 11 21:12:30 2023 +0000
+Date:   Sat Feb 11 23:52:58 2023 +0000
 
-    get all messages passes test
+    select all message and get messages by id tests working
 
- 6 files changed, 113 insertions(+), 329 deletions(-)
+ 6 files changed, 98 insertions(+), 104 deletions(-)
