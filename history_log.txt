@@ -1,7 +1,7 @@
-commit 9ad19ddd2831e8e02327aeabaab9bf23d55a9302
+commit 9b2f38c7284b366c2fcd3ab89eb1551eeadde6b5
 Author: Tom Lazore <tomlazore@gmail.com>
-Date:   Sun Feb 12 18:30:31 2023 +0000
+Date:   Sun Feb 12 18:39:06 2023 +0000
 
-    update message passes tests
+    get messages by account handler passes all tests
 
- 5 files changed, 173 insertions(+), 2451 deletions(-)
+ 5 files changed, 24 insertions(+), 343 deletions(-)

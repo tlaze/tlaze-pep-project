@@ -29,12 +29,13 @@ public class MessageService {
 
     public Message deleteMessageByID(int message){
         Message messageId = messageDAO.getMessageByID(message);
+        messageDAO.deleteMessageByID(message);
 
         if(messageId != null){
             return messageId;
         }
         else{
-            return null;
+            return messageDAO.deleteMessageByID(message);
         }
     }
 

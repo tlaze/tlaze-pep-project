@@ -115,6 +115,7 @@ public class SocialMediaController {
         int messageID = Integer.parseInt(context.pathParam("message_id"));
         Message deletedMessage = messageService.deleteMessageByID(messageID);
 
+        System.out.println(deletedMessage);
         if(deletedMessage != null){
             context.json(deletedMessage);
             context.status(200);
